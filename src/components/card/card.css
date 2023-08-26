@@ -1,0 +1,23 @@
+.card__container {
+  padding: var(--padding-small);
+  border: 2px solid var(--color-accent-transparent);
+  margin: var(--padding-small);
+  border-radius: 0.4rem;
+}
+
+.card__container:nth-of-type(even) {
+  border: 2px solid var(--color-secondary-transparent);
+}
+
+.card__date {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+.card__headline {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}

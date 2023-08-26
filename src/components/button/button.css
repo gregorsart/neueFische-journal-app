@@ -1,0 +1,38 @@
+.button__icon {
+  color: var(--color-accent-transparent);
+  cursor: pointer;
+}
+
+.button__icon:hover {
+  color: var(--color-secondary);
+}
+
+.button__secondary > .active {
+  background-color: transparent;
+  border: none;
+  color: var(--color-secondary);
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button__primary {
+  background-color: var(--color-accent);
+  width: fit-content;
+
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  letter-spacing: 0.1rem;
+}
+
+.button__primary:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+}
+
+.button__secondary {
+  background-color: transparent;
+}

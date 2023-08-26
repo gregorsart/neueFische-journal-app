@@ -1,38 +1,156 @@
-.App {
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Colors */
+  --color-text: rgb(36, 36, 36);
+  --color-accent: rgb(56, 177, 163);
+  --color-accent-transparent: rgb(159, 218, 212);
+  --color-background: rgb(247, 247, 247);
+  --color-secondary: rgb(255, 200, 0);
+  --color-secondary-transparent: rgb(255, 229, 134);
+
+  /* Else */
+
+  --padding-small: 2rem;
+}
+body {
+  color: var(--color-text);
+  background-color: var(--color-background);
+  line-height: 1.5;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* GENERAL CSS */
+
+h1 {
+  font-weight: 200;
+  text-transform: uppercase;
   text-align: center;
+  font-size: 1.3rem;
+  margin-top: 2rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h2 {
+  font-weight: 200;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+ul {
+  list-style: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* UTILITY CLASSES */
+
+.ga-flex {
   display: flex;
   flex-direction: column;
-  align-items: center;
+}
+
+/* SPECIFIC CSS */
+
+/* HEADER */
+
+header {
+  background-color: var(--color-accent);
+  height: 4rem;
+}
+
+.header__title {
+  text-align: center;
+  padding-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+
+/* NAV */
+
+.navigation__list {
+  height: 4rem;
+  background-color: var(--color-accent-transparent);
+  list-style: none;
+  display: flex;
+  gap: 1rem;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.list__item {
+  padding: 0.5rem 2rem;
+  border-radius: 0.4rem;
+  background-color: transparent;
+  border: 2px solid var(--color-accent);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.list__item--number {
+  color: var(--color-text);
+  background-color: var(--color-accent);
+  padding: 0.3rem 1rem;
+  border-radius: 20rem;
+  margin-left: 0.5rem;
+}
+
+/* Hover state single entry */
+
+.list__item:hover {
+  background-color: var(--color-secondary);
+}
+
+.list__item:hover .list__item--number {
+  background-color: var(--color-secondary-transparent);
+}
+
+/* Active state entries */
+
+.active {
+  background-color: var(--color-secondary-transparent);
+  border: 2px solid var(--color-secondary-transparent);
+}
+
+.active > .list__item--number {
+  background-color: var(--color-secondary);
+}
+
+/* FOOTER */
+
+footer {
+  text-align: center;
 }
