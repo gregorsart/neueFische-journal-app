@@ -2,45 +2,56 @@ import "./App.css";
 import { nanoid } from "nanoid";
 import Form from "./components/form/Form";
 import Card from "./components/card/Card";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Divider from "./components/utility/divider/Divider";
+import useLocalStorageState from "use-local-storage-state";
 
 function App() {
-  const [entries, setEntries] = useState([
-    {
-      id: nanoid(),
-      isFavourite: false,
-      date: "Feb 5, 2025",
-      motto: "We are in a state of chaos",
-      notes:
-        "Today I learned about React State. It was fun! I can't wait to learn more.",
-    },
-    {
-      id: nanoid(),
-      isFavourite: false,
-      date: "Feb 4, 2025",
-      motto: "Props, Props, Props",
-      notes:
-        "Today I learned about React Props. Mad props to everyone who understands this!",
-    },
-    {
-      id: nanoid(),
-      isFavourite: false,
-      date: "Feb 3, 2025",
-      motto: "How to nest components online fast",
-      notes:
-        "Today I learned about React Components and how to nest them like a pro. Application design is so much fun!",
-    },
-    {
-      id: nanoid(),
-      isFavourite: false,
-      date: "Feb 2, 2025",
-      motto: "I'm a React Developer",
-      notes: "My React-ion when I learned about React: 😍",
-    },
-  ]);
+  const [entries, setEntries] = useLocalStorageState("myJournalEntries", {
+    defaultValue: [
+      {
+        id: nanoid(),
+        isFavourite: false,
+        date: "Feb 5, 2025",
+        motto: "We are in a state of chaos",
+        notes:
+          "Today I learned about React State. It was fun! I can't wait to learn more.",
+      },
+      {
+        id: nanoid(),
+        isFavourite: false,
+        date: "Feb 4, 2025",
+        motto: "Props, Props, Props",
+        notes:
+          "Today I learned about React Props. Mad props to everyone who understands this!",
+      },
+      {
+        id: nanoid(),
+        isFavourite: false,
+        date: "Feb 3, 2025",
+        motto: "How to nest components online fast",
+        notes:
+          "Today I learned about React Components and how to nest them like a pro. Application design is so much fun!",
+      },
+      {
+        id: nanoid(),
+        isFavourite: false,
+        date: "Feb 2, 2025",
+        motto: "I'm a React Developer",
+        notes: "My React-ion when I learned about React: 😍",
+      },
+    ],
+  });
   const [favouriteEntries, setFavouriteEntries] = useState([]);
   const [showFavourites, setShowFavourites] = useState(false);
+
+  // once after the first render and also whenever entries changes, use effect runs and recalculates the favourite entries
+  useEffect(() => {
+    const favouriteEntriesArray = entries.filter(
+      (entry) => entry.isFavourite === true
+    );
+    setFavouriteEntries(favouriteEntriesArray);
+  }, [entries]);
 
   // Add new entry from form
   function handleEntry(formEntry) {
@@ -67,10 +78,6 @@ function App() {
 
   // Show filtered Entries
   function handleClickFavourites() {
-    const favouriteEntriesArray = entries.filter(
-      (entry) => entry.isFavourite === true
-    );
-    setFavouriteEntries(favouriteEntriesArray);
     setShowFavourites(true);
   }
 
